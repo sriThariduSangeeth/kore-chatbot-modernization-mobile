@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/profile"
+        android:title="Profile"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_username" />
+
+    <item android:id="@+id/transaction"
+        android:title="Transactions"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_transect" />
+
+<!--    <item android:id="@+id/placeholder"-->
+<!--        app:showAsAction="ifRoom"-->
+<!--        android:enabled="false"-->
+<!--        android:title="" />-->
+
+    <item android:id="@+id/notifi"
+        android:title="Notification"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_noti" />
+
+    <item android:id="@+id/settings"
+        android:title="Settings"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_sett" />
+</menu>
