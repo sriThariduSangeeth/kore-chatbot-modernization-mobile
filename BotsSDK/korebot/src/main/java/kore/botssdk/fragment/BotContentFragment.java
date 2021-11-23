@@ -28,6 +28,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -67,6 +68,7 @@ import kore.botssdk.dialogs.CalenderActionSheetFragment;
 import kore.botssdk.dialogs.DateRangeCalendarActionSheetFragment;
 import kore.botssdk.dialogs.OptionsActionSheetFragment;
 import kore.botssdk.listener.BotContentFragmentUpdate;
+import kore.botssdk.listener.BotSocketConnectionManager;
 import kore.botssdk.listener.ComposeFooterInterface;
 import kore.botssdk.listener.InvokeGenericWebViewInterface;
 import kore.botssdk.listener.TTSUpdate;
@@ -154,6 +156,7 @@ public class BotContentFragment extends Fragment implements BotContentFragmentUp
         boolean focusable = true;
         popUpView = inflater.inflate(R.layout.theme_change_layout, null);
         popupWindow = new PopupWindow(popUpView, width, height, focusable);
+
         findViews(view);
         findThemeViews(popUpView);
         getBundleInfo();
@@ -174,11 +177,11 @@ public class BotContentFragment extends Fragment implements BotContentFragmentUp
         headerView = view.findViewById(R.id.filesSectionHeader);
         swipeRefreshLayout = view.findViewById(R.id.swipeContainerChat);
         quickReplyView = view.findViewById(R.id.quick_reply_view);
-        ivThemeSwitcher = view.findViewById(R.id.ivThemeSwitcher);
+//        ivThemeSwitcher = view.findViewById(R.id.ivThemeSwitcher);
 //        ivChaseLogo = view.findViewById(R.id.ivChaseLogo);
-        tvChaseTitle = view.findViewById(R.id.tvChaseTitle);
+//        tvChaseTitle = view.findViewById(R.id.tvChaseTitle);
         headerView.setVisibility(View.GONE);
-        tvChaseTitle.setText(Html.fromHtml(getActivity().getResources().getString(R.string.app_name)));
+//        tvChaseTitle.setText(Html.fromHtml(getActivity().getResources().getString(R.string.app_name)));
         sharedPreferences = getActivity().getSharedPreferences(BotResponse.THEME_NAME, Context.MODE_PRIVATE);
         swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
                 android.R.color.holo_green_light,
@@ -198,13 +201,15 @@ public class BotContentFragment extends Fragment implements BotContentFragmentUp
 
         });
 
-        ivThemeSwitcher.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                popupWindow.showAtLocation(ivThemeSwitcher, Gravity.TOP|Gravity.RIGHT, 80, 220);
-            }
-        });
+//        ivThemeSwitcher.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v)
+//            {
+//                popupWindow.showAtLocation(ivThemeSwitcher, Gravity.TOP|Gravity.RIGHT, 80, 220);
+//            }
+//        });
+
+
 
     }
 

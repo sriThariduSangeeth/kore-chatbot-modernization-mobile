@@ -107,7 +107,8 @@ public class DashboardActivity extends AppCompatActivity {
         Bundle bundle = new Bundle();
         //This should not be null
         bundle.putBoolean(BundleUtils.SHOW_PROFILE_PIC, false);
-        bundle.putString(BundleUtils.BOT_NAME_INITIALS, SDKConfiguration.Client.bot_name.charAt(0)+"");
+        bundle.putString(BundleUtils.BOT_NAME, "CT BANK BOT1");
+        bundle.putString(BundleUtils.BOT_NAME_INITIALS, "CT BANK BOT");
         intent.putExtras(bundle);
 
         startActivity(intent);

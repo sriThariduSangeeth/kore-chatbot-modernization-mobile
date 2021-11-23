@@ -147,7 +147,7 @@ public class BotChatActivity extends BotAppCompactActivity implements ComposeFoo
     private Gson gson = new Gson();
     //For Bottom Panel
     private String packageName = "com.kore.koreapp";
-    private String appName = "Kore";
+    private String appName = "CT BOT";
     private CustomBottomSheetBehavior mBottomSheetBehavior;
     //Fragment Approch
     private FrameLayout composerView;
@@ -290,9 +290,12 @@ public class BotChatActivity extends BotAppCompactActivity implements ComposeFoo
     View.OnClickListener launchBotBtnOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+
+            if (isOnline()) {
+                BotSocketConnectionManager.getInstance().killInstance();
+            }
             Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
             startActivity(intent);
-            botClient.disconnect();
             finish();
         }
     };
