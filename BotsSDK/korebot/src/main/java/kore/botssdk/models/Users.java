@@ -1,27 +1,23 @@
 package kore.botssdk.models;
 
-public class Users {
+import java.io.Serializable;
 
-    private String UserId;
+public class Users implements Serializable {
+
+    private int userId;
     private String userName;
-    private String UserFullName;
+    private String userFullName;
     private String password;
+    private double balance;
+    private long accNumber;
+    private String validDate;
 
-    public Users(){}
-
-    public Users(String userId, String userName, String userFullName, String password) {
-        this.UserId = userId;
-        this.userName = userName;
-        this.UserFullName = userFullName;
-        this.password = password;
+    public int getUserId() {
+        return userId;
     }
 
-    public String getUserId() {
-        return UserId;
-    }
-
-    public void setUserId(String userId) {
-        UserId = userId;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getUserName() {
@@ -33,11 +29,11 @@ public class Users {
     }
 
     public String getUserFullName() {
-        return UserFullName;
+        return userFullName;
     }
 
     public void setUserFullName(String userFullName) {
-        UserFullName = userFullName;
+        this.userFullName = userFullName;
     }
 
     public String getPassword() {
@@ -48,4 +44,27 @@ public class Users {
         this.password = password;
     }
 
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public long getAccNumber() {
+        return accNumber;
+    }
+
+    public void setAccNumber(long accNumber) {
+        this.accNumber = accNumber;
+    }
+
+    public String getValidDate() {
+        return validDate;
+    }
+
+    public void setValidDate(String validDate) {
+        this.validDate = validDate;
+    }
 }

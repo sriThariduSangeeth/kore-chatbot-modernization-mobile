@@ -1,0 +1,31 @@
+{
+  "users": [
+    {
+      "userId": "1234",
+      "userName": "Jhone",
+      "userFullName": "Jhone Smith",
+      "password": "123456",
+      "balance": "2606.78",
+      "accNumber": "2459702663",
+      "validDate": "08-24"
+    },
+    {
+      "userId": "1235",
+      "userName": "Oliver",
+      "userFullName": "Oliver Queen",
+      "password": "123456",
+      "balance": "3265.13",
+      "accNumber": "5699734764",
+      "validDate": "06-13"
+    },
+    {
+      "userId": "1236",
+      "userName": "James",
+      "userFullName": "James William",
+      "password": "123456",
+      "balance": "568.32",
+      "accNumber": "2389137531",
+      "validDate": "09-04"
+    }
+  ]
+}

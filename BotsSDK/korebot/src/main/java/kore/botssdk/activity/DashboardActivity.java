@@ -25,6 +25,7 @@ import kore.botssdk.fragment.ProfileFragment;
 import kore.botssdk.fragment.SettingsFragment;
 import kore.botssdk.fragment.TransactionFragment;
 import kore.botssdk.listener.BotSocketConnectionManager;
+import kore.botssdk.models.Users;
 import kore.botssdk.net.SDKConfiguration;
 import kore.botssdk.utils.BundleUtils;
 import kore.botssdk.utils.StringUtils;
@@ -38,7 +39,7 @@ public class DashboardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dashboard_activity);
-
+        Users currentuser = (Users) this.getIntent().getSerializableExtra("current");
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomnavigationview);
         floatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
         bottomNavigationView.setBackground(null);
