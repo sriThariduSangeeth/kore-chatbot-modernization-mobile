@@ -2,8 +2,6 @@ package kore.botssdk.fragment;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,7 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListAdapter;
 
+import java.util.ArrayList;
+
 import kore.botssdk.R;
+import kore.botssdk.adapter.TransactionAdapter;
+import kore.botssdk.models.TransactionDetailModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,6 +34,8 @@ public class TransactionFragment extends Fragment {
     private String mParam2;
     private ListAdapter mAdapter;
 
+    RecyclerView recyclerView1;
+    ArrayList<TransactionDetailModel> dataHolder;
 
     public TransactionFragment() {
         // Required empty public constructor
@@ -69,10 +73,39 @@ public class TransactionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_transaction, container, false);
+        View view = inflater.inflate(R.layout.fragment_transaction, container, false);
+        recyclerView1 = view.findViewById(R.id.recycler_view_act);
+        recyclerView1.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        dataHolder = new ArrayList<>();
+
+        TransactionDetailModel t1 = new TransactionDetailModel(
+                R.drawable.bank, "Money Sent", "Pending", "100$");
+
+        TransactionDetailModel t2 = new TransactionDetailModel(
+                R.drawable.bank, "Money Sent", "Sucesfull", "160$");
+
+        TransactionDetailModel t3 = new TransactionDetailModel(
+                R.drawable.bank, "Money Sent", "Cancelled", "200$");
+
+        TransactionDetailModel t4 = new TransactionDetailModel(
+                R.drawable.bank, "Money Sent", "Pending", "1000$");
+
+        TransactionDetailModel t5 = new TransactionDetailModel(
+                R.drawable.bank, "Money Received", "Pending", "300$");
+
+        dataHolder.add(t1);
+        dataHolder.add(t2);
+        dataHolder.add(t3);
+        dataHolder.add(t4);
+        dataHolder.add(t5);
+
+        recyclerView1.setAdapter(new TransactionAdapter(dataHolder));
+
+        return view;
     }
 
-    @Override
+ /*   @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //recycler
@@ -83,5 +116,5 @@ public class TransactionFragment extends Fragment {
         // define an adapter
 //        mAdapter = new ListAdapter(null, getContext());
 //        recyclerView.setAdapter(mAdapter);
-    }
+    }*/
 }
