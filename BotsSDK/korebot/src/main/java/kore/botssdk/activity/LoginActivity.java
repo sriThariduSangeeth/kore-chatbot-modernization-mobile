@@ -12,6 +12,7 @@ import kore.botssdk.R;
 public class LoginActivity extends AppCompatActivity {
 
     private Button login;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -19,6 +19,7 @@
         <item name="colorPrimary">@color/colorPrimaryKa</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/bgBlueSignup</item>
+        <item name="android:navigationBarColor">@color/colorPrimaryKa</item>
     </style>
 
     <!-- Associated application theme. -->

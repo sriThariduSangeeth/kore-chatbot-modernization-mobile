@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context=".fragment.ProfileFragment">
 
     <androidx.constraintlayout.widget.Guideline
@@ -193,11 +192,12 @@
 
 
     <LinearLayout
+        android:id="@+id/transferCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:paddingStart="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/payCard"
         app:layout_constraintStart_toStartOf="parent"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView">
@@ -206,7 +206,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Transactions"
+            android:text="Transfer"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -244,7 +244,68 @@
             android:layout_height="40dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="40dp"
+            android:backgroundTint="@color/colorPrimaryKa"
             android:text="TRANSFER"
+            android:layout_gravity="right"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/payCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:paddingStart="32dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/transferCard"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/transferCard">
+        <TextView
+            android:id="@+id/txt4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Payment"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/view" />
+        <EditText
+            android:id="@+id/tranUser1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="40dp"
+            android:hint="name"
+            android:textColorHint="#02406D"
+            android:drawablePadding="20dp"
+            android:maxLines="1"
+            android:background="@drawable/in_edit_view"
+            android:padding="10dp"
+            />
+        <EditText
+            android:id="@+id/tranCre1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="40dp"
+            android:hint="credit"
+            android:drawableRight="@drawable/ic_boller"
+            android:textColorHint="#02406D"
+            android:drawablePadding="20dp"
+            android:maxLines="1"
+            android:inputType="number"
+            android:background="@drawable/in_edit_view"
+            android:padding="10dp"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="40dp"
+            android:text="Pay"
+            android:backgroundTint="@color/colorPrimaryKa"
             android:layout_gravity="right"
             />
     </LinearLayout>

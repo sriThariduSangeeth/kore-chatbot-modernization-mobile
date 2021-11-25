@@ -76,8 +76,6 @@ public class DashboardActivity extends AppCompatActivity {
         super.onStart();
     }
 
-
-
     @Override
     protected void onStop() {
         super.onStop();
