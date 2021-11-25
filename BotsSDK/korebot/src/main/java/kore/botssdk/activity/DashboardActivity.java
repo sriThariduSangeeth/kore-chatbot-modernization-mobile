@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -47,28 +48,27 @@ public class DashboardActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new ProfileFragment()).commit();
     }
 
-    private BottomNavigationView.OnNavigationItemSelectedListener selectItem = new BottomNavigationView.OnNavigationItemSelectedListener() {
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            Fragment selectFragment = null;
+    @SuppressLint("NonConstantResourceId")
+    private final BottomNavigationView.OnNavigationItemSelectedListener selectItem = item -> {
+        Fragment selectFragment = null;
 
-            switch (item.getItemId()){
-                case R.id.profile:
-                    selectFragment = new ProfileFragment();
-                    break;
-                case R.id.transaction:
-                    selectFragment = new TransactionFragment();
-                    break;
-                case R.id.notifi:
-                    selectFragment = new NotifyFragment();
-                    break;
-                case R.id.settings:
-                    selectFragment = new SettingsFragment();
-                    break;
-            }
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,selectFragment).commit();
-            return true;
+        switch (item.getItemId()){
+            case R.id.profile:
+                selectFragment = new ProfileFragment();
+                break;
+            case R.id.transaction:
+                selectFragment = new TransactionFragment();
+                break;
+            case R.id.notifi:
+                selectFragment = new NotifyFragment();
+                break;
+            case R.id.settings:
+                selectFragment = new SettingsFragment();
+                break;
         }
+        assert selectFragment != null;
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,selectFragment).commit();
+        return true;
     };
 
     @Override
