@@ -80,19 +80,19 @@ public class TransactionFragment extends Fragment {
         dataHolder = new ArrayList<>();
 
         TransactionDetailModel t1 = new TransactionDetailModel(
-                R.drawable.bank, "Money Sent", "Pending", "100$");
+                R.drawable.ic_icon_share, "Money Sent", "Pending", "100$");
 
         TransactionDetailModel t2 = new TransactionDetailModel(
-                R.drawable.bank, "Money Sent", "Sucesfull", "160$");
+                R.drawable.ic_mail_drawable, "Money Sent", "Sucesfull", "160$");
 
         TransactionDetailModel t3 = new TransactionDetailModel(
-                R.drawable.bank, "Money Sent", "Cancelled", "200$");
+                R.drawable.ic_icon_share, "Money Sent", "Cancelled", "200$");
 
         TransactionDetailModel t4 = new TransactionDetailModel(
-                R.drawable.bank, "Money Sent", "Pending", "1000$");
+                R.drawable.ic_icon_share, "Money Sent", "Pending", "1000$");
 
         TransactionDetailModel t5 = new TransactionDetailModel(
-                R.drawable.bank, "Money Received", "Pending", "300$");
+                R.drawable.ic_mail_drawable, "Money Received", "Pending", "300$");
 
         dataHolder.add(t1);
         dataHolder.add(t2);
