@@ -3,6 +3,7 @@ package kore.botssdk.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -34,24 +35,32 @@ public class DashboardActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
     FloatingActionButton floatingActionButton;
+    private Users currentuser;
+    private Bundle bundle = new Bundle();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dashboard_activity);
-        Users currentuser = (Users) this.getIntent().getSerializableExtra("current");
+        currentuser = (Users) this.getIntent().getSerializableExtra("current");
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomnavigationview);
         floatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
         bottomNavigationView.setBackground(null);
         bottomNavigationView.setOnNavigationItemSelectedListener(selectItem);
         floatingActionButton.setOnClickListener(launchBotBtnOnClickListener);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new ProfileFragment()).commit();
+        bundle.putSerializable("currentUser", currentuser);
+        Fragment mainFrag = new ProfileFragment();
+        mainFrag.setArguments(bundle);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mainFrag).commit();
     }
 
     @SuppressLint("NonConstantResourceId")
     private final BottomNavigationView.OnNavigationItemSelectedListener selectItem = item -> {
         Fragment selectFragment = null;
+
+        FragmentTransaction fragmentTransaction;
+        bundle.putSerializable("currentUser", currentuser);
 
         switch (item.getItemId()){
             case R.id.profile:
@@ -68,7 +77,9 @@ public class DashboardActivity extends AppCompatActivity {
                 break;
         }
         assert selectFragment != null;
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,selectFragment).commit();
+        selectFragment.setArguments(bundle);
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container,selectFragment).commit();
         return true;
     };
 
