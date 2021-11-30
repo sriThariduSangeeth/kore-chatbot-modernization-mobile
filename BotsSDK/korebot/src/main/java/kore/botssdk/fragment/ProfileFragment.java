@@ -1,6 +1,6 @@
 package kore.botssdk.fragment;
 
-import android.content.Context;
+
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -17,7 +17,7 @@ import kore.botssdk.models.Users;
 public class ProfileFragment extends Fragment {
 
 
-    private static final String ARG_PARAM3 = "currentUser";
+    private static final String ARG_PARAM3 = "current";
     private Users currentUser;
     private TextView accBalance, cardNumber , accName ,cardValid;
 
@@ -36,6 +36,7 @@ public class ProfileFragment extends Fragment {
         if (bundle != null) {
             currentUser = (Users) getArguments().getSerializable(ARG_PARAM3);
         }
+
 
         accBalance.setText("$"+currentUser.getBalance());
         cardNumber.setText(""+currentUser.getAccNumber());

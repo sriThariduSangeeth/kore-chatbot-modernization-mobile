@@ -44,6 +44,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.Reader;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -87,6 +88,7 @@ import kore.botssdk.models.KoreComponentModel;
 import kore.botssdk.models.KoreMedia;
 import kore.botssdk.models.PayloadInner;
 import kore.botssdk.models.PayloadOuter;
+import kore.botssdk.models.Users;
 import kore.botssdk.models.WebHookRequestModel;
 import kore.botssdk.models.WebHookResponseDataModel;
 import kore.botssdk.models.WebHookResponseModel;
@@ -166,6 +168,7 @@ public class BotChatActivity extends BotAppCompactActivity implements ComposeFoo
     private Handler pollHandler = new Handler();
     private Runnable runnable;
     private int poll_delay = 2000;
+    private Users currentuser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -174,6 +177,8 @@ public class BotChatActivity extends BotAppCompactActivity implements ComposeFoo
         findViews();
         getBundleInfo();
         getDataFromTxt();
+
+        currentuser = (Users) this.getIntent().getSerializableExtra("current");
 
 //        onThemeChangeClicked(sharedPreferences.getString(BotResponse.APPLY_THEME_NAME, BotResponse.THEME_NAME_1));
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -295,6 +300,7 @@ public class BotChatActivity extends BotAppCompactActivity implements ComposeFoo
                 BotSocketConnectionManager.getInstance().killInstance();
             }
             Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
+            intent.putExtra("current", (Serializable) currentuser);
             startActivity(intent);
             finish();
         }

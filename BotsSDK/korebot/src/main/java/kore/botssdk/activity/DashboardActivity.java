@@ -49,7 +49,7 @@ public class DashboardActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(selectItem);
         floatingActionButton.setOnClickListener(launchBotBtnOnClickListener);
 
-        bundle.putSerializable("currentUser", currentuser);
+        bundle.putSerializable("current", currentuser);
         Fragment mainFrag = new ProfileFragment();
         mainFrag.setArguments(bundle);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mainFrag).commit();
@@ -60,7 +60,6 @@ public class DashboardActivity extends AppCompatActivity {
         Fragment selectFragment = null;
 
         FragmentTransaction fragmentTransaction;
-        bundle.putSerializable("currentUser", currentuser);
 
         switch (item.getItemId()){
             case R.id.profile:
@@ -114,8 +113,9 @@ public class DashboardActivity extends AppCompatActivity {
 
     private void launchBotChatActivity(){
         Intent intent = new Intent(getApplicationContext(), BotChatActivity.class);
-        Bundle bundle = new Bundle();
+        bundle = new Bundle();
         //This should not be null
+        bundle.putSerializable("current",currentuser);
         bundle.putBoolean(BundleUtils.SHOW_PROFILE_PIC, false);
         bundle.putString(BundleUtils.BOT_NAME, "CT BANK BOT1");
         bundle.putString(BundleUtils.BOT_NAME_INITIALS, "CT BANK BOT");
