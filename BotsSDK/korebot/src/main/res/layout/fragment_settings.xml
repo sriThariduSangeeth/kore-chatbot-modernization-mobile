@@ -1,18 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".fragment.SettingsFragment">
 
     <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Settings Tab"
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
         android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:text="Settings"
+        android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold" />
 
-</FrameLayout>
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip14"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:text="Profile Settings"
+        android:textSize="20sp" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip15"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:text="Alerts"
+        android:textSize="20sp" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip16"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:text="Manage Debit/Credit Card"
+        android:textSize="20sp" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip18"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:text="Statements &amp; Documents"
+        android:textSize="20sp" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip19"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Contact Us"
+        android:textSize="20sp" />
+
+
+</LinearLayout>

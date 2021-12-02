@@ -1,5 +1,6 @@
 package kore.botssdk.activity;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -11,8 +12,11 @@ import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button login;
     private Context context;
     private Users[] authUsers;
-    private EditText username , password;
+    private EditText username, password;
     private ExecutorService executorService;
     private Handler handler;
     private SharedPreferences sharedPreferences;
@@ -76,10 +80,10 @@ public class LoginActivity extends AppCompatActivity {
             is.read(buffer);
             is.close();
             json = new JSONObject(new String(buffer, "UTF-8")).getString("users");
-            userList =  new ObjectMapper().readValue(json, Users[].class);
+            userList = new ObjectMapper().readValue(json, Users[].class);
         } catch (IOException ex) {
             ex.printStackTrace();
-        } catch (JSONException e){
+        } catch (JSONException e) {
             e.printStackTrace();
         }
         return userList;
@@ -90,23 +94,41 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             Users currentUser = checkUserAuthentication();
-            if(currentUser != null){
+            if (currentUser != null) {
                 Intent login = new Intent(getApplicationContext(), DashboardActivity.class);
                 login.putExtra("current", (Serializable) currentUser);
                 startActivity(login);
                 finish();
             }
+            else{
+                Toast.makeText(getApplicationContext(), "Username and Password Invalid", Toast.LENGTH_SHORT).show();
+                username.getText().clear();
+                password.getText().clear();
+            }
         }
     };
 
-    private Users checkUserAuthentication(){
+    private Users checkUserAuthentication() {
 
-        String uname = username.getText().toString();
+        String uname = username.getText().toString().trim();// trimming the spaces
         String upassword = password.getText().toString();
 
-        for (Users obj: authUsers) {
-            if(obj.getUserName().equalsIgnoreCase(uname) && obj.getPassword().equalsIgnoreCase(upassword)){
+        //String noWhiteSpace = "Aw{1,20}z";
+        if (uname.isEmpty()) {
+            username.setError("Field cannot be empty");
+        } /*else if (!uname.matches(noWhiteSpace)){
+            username.setError("Username is incorrect");
+        }*/
+        if (upassword.isEmpty()) {
+            password.setError("Field cannot be empty");
+            password.getText().clear();
+        }
+
+        for (Users obj : authUsers) {
+            if (obj.getUserName().equalsIgnoreCase(uname) && obj.getPassword().equalsIgnoreCase(upassword)) {
+                Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
                 return obj;
+
             }
         }
         return null;
