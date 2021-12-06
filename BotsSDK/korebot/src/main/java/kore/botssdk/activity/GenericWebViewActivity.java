@@ -1,5 +1,6 @@
 package kore.botssdk.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -26,10 +27,12 @@ public class GenericWebViewActivity extends BotAppCompactActivity {
     String url;
     WebView webview;
     ProgressBar mProgressBar;
+    public static Activity fa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        fa = this;
         setContentView(R.layout.generic_webview_layout);
         Bundle receivedBundle = getIntent().getExtras();
         url = receivedBundle.getString("url");
@@ -46,11 +49,12 @@ public class GenericWebViewActivity extends BotAppCompactActivity {
         webview.getSettings().setJavaScriptEnabled(true);
         webview.getSettings().setUseWideViewPort(true);
         webview.addJavascriptInterface(new WebAppInterface(this), "Android");
-       webview.getSettings().setUserAgentString("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36");
+        webview.getSettings().setUserAgentString("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36");
 
         webview.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         webview.getSettings().setDomStorageEnabled(true);
         webview.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+
         webview.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -86,6 +90,7 @@ public class GenericWebViewActivity extends BotAppCompactActivity {
                         + consoleMessage.sourceId());
                 return super.onConsoleMessage(consoleMessage);
             }
+
             /*@Override
             public void onProgressChanged(WebView view, int newProgress) {
                 setTitle("Loading... " +newProgress +"%");
@@ -115,6 +120,18 @@ public class GenericWebViewActivity extends BotAppCompactActivity {
 
         @JavascriptInterface
         public void NativeBridgeDown() {
+            Log.d(this.getClass().getSimpleName(), "The response data is NativeBridgeDown");
+        }
+
+        @JavascriptInterface
+        public void FormSubmit(String strl)
+        {
+            Log.d(this.getClass().getSimpleName(), "The response data is FormSubmit");
+        }
+        @JavascriptInterface           // For API 17+
+        public void FormSubmitToServer(String strl)
+        {
+            Log.d(this.getClass().getSimpleName(), "The response data is FormSubmitToServer");
         }
     }
 

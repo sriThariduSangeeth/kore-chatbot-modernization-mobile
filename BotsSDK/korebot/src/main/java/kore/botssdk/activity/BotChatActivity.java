@@ -606,6 +606,10 @@ public class BotChatActivity extends BotAppCompactActivity implements ComposeFoo
                             payOuter = gson.fromJson(payOuter.getText().replace("&quot;", "\""), PayloadOuter.class);
                             // payOuter = gson.fromJson(payOuter.getText().replace("&quot;", "\""), PayloadOuter.class);
                         }*/
+                        if (payOuter.getText() != null && payOuter.getText().contains("Form") && payOuter.getText().contains("successfully submitted")) {
+                            Log.d("Catch action",payOuter.getText());
+                            GenericWebViewActivity.fa.finish();
+                        }
 
                         if (payOuter.getText() != null && payOuter.getText().contains("&quot")) {
                             Gson gson = new Gson();
