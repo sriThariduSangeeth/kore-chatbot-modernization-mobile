@@ -2,8 +2,8 @@
   "users": [
     {
       "userId": "1234",
-      "userName": "Jhone",
-      "userFullName": "Jhone Smith",
+      "userName": "John",
+      "userFullName": "John Smith",
       "password": "123456",
       "balance": "2606.78",
       "accNumber": "2459702663",
