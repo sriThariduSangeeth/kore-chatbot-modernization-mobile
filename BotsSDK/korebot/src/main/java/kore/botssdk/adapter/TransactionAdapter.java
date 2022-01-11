@@ -25,7 +25,6 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_activity, parent, false);
         return new ViewHolder(view);
@@ -34,7 +33,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        holder.image.setImageResource(dataHolder.get(position).getImage());
+        //holder.image.setImageResource(dataHolder.get(position).getImage());
         holder.description.setText(dataHolder.get(position).getDescription());
         holder.transaction.setText(dataHolder.get(position).getTransaction());
         holder.amount.setText(dataHolder.get(position).getAmount());
@@ -47,7 +46,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
     class ViewHolder extends RecyclerView.ViewHolder{
 
-        ImageView image;
+        //ImageView image;
 
         TextView transaction;
 
@@ -58,7 +57,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            image = itemView.findViewById(R.id.image);
+            //image = itemView.findViewById(R.id.image);
             transaction = itemView.findViewById(R.id.textView11);
             description = itemView.findViewById(R.id.textView12);
             amount = itemView.findViewById(R.id.textView13);

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#02406D"
     tools:context=".fragment.TransactionFragment">
 
     <TextView
@@ -13,25 +14,23 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Last Activity"
+        android:textColor="@color/white"
         android:layout_gravity="center"
         android:textSize="20sp"
         android:textStyle="bold" />
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginTop="16dp"
-        app:cardElevation="4dp"
-        android:background="#CED2F0FF"
+        android:background="@color/colorPrimaryKa"
         app:layout_constraintTop_toBottomOf="@+id/textView10"
         tools:ignore="MissingConstraints">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_act"
-            android:layout_margin="16dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#CED2F0FF"
+            android:layout_height="match_parent"
             tools:listitem="@layout/item_activity" />
     </com.google.android.material.card.MaterialCardView>
 
