@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#02406D"
-    tools:context=".fragment.TransactionFragment">
+    tools:context=".fragment.TransactionFragment"
+    android:padding="10dp">
 
     <TextView
         android:id="@+id/textView10"
@@ -21,8 +22,9 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        app:cardCornerRadius="12dp"
         android:background="@color/colorPrimaryKa"
         app:layout_constraintTop_toBottomOf="@+id/textView10"
         tools:ignore="MissingConstraints">

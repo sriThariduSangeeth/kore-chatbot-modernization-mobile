@@ -11,7 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListAdapter;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 
 import kore.botssdk.R;
 import kore.botssdk.adapter.TransactionAdapter;
@@ -78,27 +80,39 @@ public class TransactionFragment extends Fragment {
         recyclerView1.setLayoutManager(new LinearLayoutManager(getContext()));
 
         dataHolder = new ArrayList<>();
+        int startYear = 2018;                                    //Starting year of specified random date
+        int endYear = 2022;                                    //Starting year of specified random date (including)
+        long start = Timestamp.valueOf(startYear + 1 + "-1-1 0:0:0").getTime();
+        long end = Timestamp.valueOf(endYear + "-1-1 0:0:0").getTime();
+        long ms = (long) ((end - start) * Math.random() + start);    //The qualified number of 13-bit milliseconds is obtained.
+        Date date = new Date(ms);
 
-        TransactionDetailModel t1 = new TransactionDetailModel(
-                R.drawable.ic_icon_share, "Money Sent", "Pending", "100$");
+        //R.drawable.ic_money_send,
+        TransactionDetailModel t1 = new TransactionDetailModel(date.toString(), "Money Sent", "Pending", "100$");
 
-        TransactionDetailModel t2 = new TransactionDetailModel(
-                R.drawable.ic_mail_drawable, "Money Sent", "Sucesfull", "160$");
+        TransactionDetailModel t2 = new TransactionDetailModel(date.toString(), "Money Sent", "Successful", "160$");
 
-        TransactionDetailModel t3 = new TransactionDetailModel(
-                R.drawable.ic_icon_share, "Money Sent", "Cancelled", "200$");
+        TransactionDetailModel t3 = new TransactionDetailModel(date.toString(), "Money Sent", "Cancelled", "200$");
 
-        TransactionDetailModel t4 = new TransactionDetailModel(
-                R.drawable.ic_icon_share, "Money Sent", "Pending", "1000$");
+        TransactionDetailModel t4 = new TransactionDetailModel(date.toString(), "Money Received", "Pending", "1000$");
 
-        TransactionDetailModel t5 = new TransactionDetailModel(
-                R.drawable.ic_mail_drawable, "Money Received", "Pending", "300$");
+        TransactionDetailModel t5 = new TransactionDetailModel(date.toString(), "Money Received", "Pending", "300$");
+
+        TransactionDetailModel t6 = new TransactionDetailModel(date.toString(), "Money Sent", "Successful", "450$");
 
         dataHolder.add(t1);
         dataHolder.add(t2);
         dataHolder.add(t3);
         dataHolder.add(t4);
         dataHolder.add(t5);
+        dataHolder.add(t6);
+        dataHolder.add(t1);
+        dataHolder.add(t2);
+        dataHolder.add(t4);
+        dataHolder.add(t2);
+        dataHolder.add(t3);
+        dataHolder.add(t4);
+
 
         recyclerView1.setAdapter(new TransactionAdapter(dataHolder));
 

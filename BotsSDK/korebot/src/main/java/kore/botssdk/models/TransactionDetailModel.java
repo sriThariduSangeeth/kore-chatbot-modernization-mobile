@@ -1,8 +1,11 @@
 package kore.botssdk.models;
 
+
 public class TransactionDetailModel {
 
-   // private int image;
+    //private int image;
+
+    private String date;
 
     private String transaction;
 
@@ -10,20 +13,31 @@ public class TransactionDetailModel {
 
     private String amount;
 
-    public TransactionDetailModel(int image, String transaction, String description, String amount) {
+
+    public TransactionDetailModel(String date, String transaction, String description, String amount) {
+
         //this.image = image;
+        this.date = date;
         this.transaction = transaction;
         this.description = description;
         this.amount = amount;
     }
 
-    //public int getImage() {
-       // return image;
-   // }
+    /*public int getImage() {
+        return image;
+    }
 
-    //public void setImage(int image) {
-        //this.image = image;
-    //}
+    public void setImage(int image) {
+        this.image = image;
+    }*/
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 
     public String getTransaction() {
         return transaction;

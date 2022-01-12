@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import kore.botssdk.R;
 import kore.botssdk.models.NotificationDetailModel;
 
-public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.ViewHolder>{
+public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.ViewHolder> {
 
     ArrayList<NotificationDetailModel> dataHolder;
 
@@ -33,7 +33,8 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        holder.image.setImageResource(dataHolder.get(position).getImage());
+        //holder.image.setImageResource(dataHolder.get(position).getImage());
+        holder.date.setText(dataHolder.get(position).getDate());
         holder.description.setText(dataHolder.get(position).getDescription());
         holder.transaction.setText(dataHolder.get(position).getTransaction());
         holder.amount.setText(dataHolder.get(position).getAmount());
@@ -45,9 +46,11 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         return dataHolder.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView image;
+        //ImageView image;
+
+        TextView date;
 
         TextView transaction;
 
@@ -58,7 +61,8 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            image = itemView.findViewById(R.id.image);
+            //image = itemView.findViewById(R.id.image);
+            date = itemView.findViewById(R.id.textViewDate);
             transaction = itemView.findViewById(R.id.textView11);
             description = itemView.findViewById(R.id.textView12);
             amount = itemView.findViewById(R.id.textView13);
