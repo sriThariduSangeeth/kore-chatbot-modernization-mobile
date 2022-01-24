@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import kore.botssdk.R;
-import kore.botssdk.fragment.TransactionDetails;
 import kore.botssdk.models.TransactionDetailModel;
 
 public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.ViewHolder> {
