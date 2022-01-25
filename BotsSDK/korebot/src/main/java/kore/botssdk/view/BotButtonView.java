@@ -12,6 +12,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import com.google.android.flexbox.FlexDirection;
+import com.google.android.flexbox.FlexboxLayoutManager;
+import com.google.android.flexbox.JustifyContent;
+
 import java.util.ArrayList;
 
 import kore.botssdk.R;
@@ -57,8 +61,12 @@ public class BotButtonView extends ViewGroup {
         dp1 = AppControl.getInstance().getDimensionUtil().dp1;
         recyclerView = new RecyclerView(getContext());
 
-        StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(3, LinearLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(staggeredGridLayoutManager);
+        FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(getContext());
+        layoutManager.setFlexDirection(FlexDirection.COLUMN);
+        layoutManager.setJustifyContent(JustifyContent.FLEX_START);
+
+//        StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(layoutManager);
         //View inflatedView = LayoutInflater.from(getContext()).inflate(R.layout.bot_custom_button_grid_view, this, true);
         //gridView = inflatedView.findViewById(R.id.botCustomGrid);
         addView(recyclerView);
