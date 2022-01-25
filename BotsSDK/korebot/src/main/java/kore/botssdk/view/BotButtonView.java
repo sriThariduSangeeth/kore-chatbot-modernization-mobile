@@ -2,17 +2,14 @@ package kore.botssdk.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.GridView;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import com.google.android.flexbox.AlignItems;
 import com.google.android.flexbox.FlexDirection;
+import com.google.android.flexbox.FlexWrap;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
 
@@ -20,12 +17,10 @@ import java.util.ArrayList;
 
 import kore.botssdk.R;
 import kore.botssdk.adapter.BotButtonStaggeredTemplateAdaptor;
-import kore.botssdk.adapter.BotButtonTemplateAdapter;
 import kore.botssdk.application.AppControl;
 import kore.botssdk.listener.ComposeFooterInterface;
 import kore.botssdk.listener.InvokeGenericWebViewInterface;
 import kore.botssdk.models.BotButtonModel;
-import kore.botssdk.utils.BundleConstants;
 import kore.botssdk.view.viewUtils.LayoutUtils;
 import kore.botssdk.view.viewUtils.MeasureUtils;
 
@@ -62,16 +57,13 @@ public class BotButtonView extends ViewGroup {
         recyclerView = new RecyclerView(getContext());
 
         FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(getContext());
-        layoutManager.setFlexDirection(FlexDirection.COLUMN);
+        layoutManager.setFlexDirection(FlexDirection.ROW);
+        layoutManager.setFlexWrap(FlexWrap.WRAP);
+        layoutManager.setAlignItems(AlignItems.STRETCH);
         layoutManager.setJustifyContent(JustifyContent.FLEX_START);
-
-//        StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
-        //View inflatedView = LayoutInflater.from(getContext()).inflate(R.layout.bot_custom_button_grid_view, this, true);
-        //gridView = inflatedView.findViewById(R.id.botCustomGrid);
         addView(recyclerView);
         layoutItemHeight = getResources().getDimension(R.dimen.carousel_view_button_height_individual);
-//        setBackgroundColor(0xffffffff);
     }
 
     public void setRestrictedMaxWidth(float restrictedMaxWidth) {

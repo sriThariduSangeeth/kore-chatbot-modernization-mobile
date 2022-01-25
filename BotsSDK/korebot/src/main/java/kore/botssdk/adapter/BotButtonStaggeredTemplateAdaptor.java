@@ -12,6 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.flexbox.AlignItems;
+import com.google.android.flexbox.FlexboxLayoutManager;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -27,7 +30,7 @@ public class BotButtonStaggeredTemplateAdaptor extends RecyclerView.Adapter<BotB
     List<BotButtonModel> botButtonModels = new LinkedList<>();
     private final String splashColour;
     private final String disabledColour;
-    private LayoutInflater ownLayoutInflater;
+    private final LayoutInflater ownLayoutInflater;
     private boolean isEnabled = true;
     private float dp1;
 
@@ -85,6 +88,12 @@ public class BotButtonStaggeredTemplateAdaptor extends RecyclerView.Adapter<BotB
         ((GradientDrawable) viewHolder.botItemButton.getBackground()).setStroke((int) (2 * dp1), isEnabled ? Color.parseColor(splashColour) : Color.parseColor(disabledColour));
         viewHolder.botItemButton.setTextColor(isEnabled ? Color.parseColor(splashColour) : Color.parseColor(disabledColour));
         view.setTag(viewHolder);
+        ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+        if (layoutParams instanceof FlexboxLayoutManager.LayoutParams) {
+            FlexboxLayoutManager.LayoutParams flexboxLp = (FlexboxLayoutManager.LayoutParams) layoutParams;
+            flexboxLp.setFlexGrow(0.0f);
+            flexboxLp.setAlignSelf(AlignItems.FLEX_END);
+        }
     }
 
     private void populateView(BotButtonStaggeredTemplateAdaptor.ViewHolder holder, int position) {
