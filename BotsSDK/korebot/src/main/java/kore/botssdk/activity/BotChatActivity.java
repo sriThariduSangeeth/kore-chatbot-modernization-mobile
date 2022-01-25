@@ -596,7 +596,7 @@ public class BotChatActivity extends BotAppCompactActivity implements ComposeFoo
             boolean resolved = true;
             PayloadOuter payOuter = null;
 //            PayloadInner payInner = null;
-            if (!botResponse.getMessage().isEmpty()) {
+                if (!botResponse.getMessage().isEmpty()) {
                 ComponentModel compModel = botResponse.getMessage().get(0).getComponent();
                 if (compModel != null) {
                     payOuter = compModel.getPayload();

@@ -6,11 +6,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ListView;
+import android.widget.GridView;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import java.util.ArrayList;
 
 import kore.botssdk.R;
+import kore.botssdk.adapter.BotButtonStaggeredTemplateAdaptor;
 import kore.botssdk.adapter.BotButtonTemplateAdapter;
 import kore.botssdk.application.AppControl;
 import kore.botssdk.listener.ComposeFooterInterface;
@@ -27,7 +32,8 @@ import kore.botssdk.view.viewUtils.MeasureUtils;
 public class BotButtonView extends ViewGroup {
 
     float dp1, layoutItemHeight = 0;
-    ListView autoExpandListView;
+    //GridView gridView;
+    RecyclerView recyclerView;
     float restrictedMaxWidth, restrictedMaxHeight;
     ComposeFooterInterface composeFooterInterface;
     InvokeGenericWebViewInterface invokeGenericWebViewInterface;
@@ -49,9 +55,13 @@ public class BotButtonView extends ViewGroup {
 
     private void init() {
         dp1 = AppControl.getInstance().getDimensionUtil().dp1;
-        View inflatedView = LayoutInflater.from(getContext()).inflate(R.layout.bot_custom_button_view, this, true);
-        autoExpandListView = (ListView) inflatedView.findViewById(R.id.botCustomButtonList);
+        recyclerView = new RecyclerView(getContext());
 
+        StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(3, LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(staggeredGridLayoutManager);
+        //View inflatedView = LayoutInflater.from(getContext()).inflate(R.layout.bot_custom_button_grid_view, this, true);
+        //gridView = inflatedView.findViewById(R.id.botCustomGrid);
+        addView(recyclerView);
         layoutItemHeight = getResources().getDimension(R.dimen.carousel_view_button_height_individual);
 //        setBackgroundColor(0xffffffff);
     }
@@ -69,12 +79,12 @@ public class BotButtonView extends ViewGroup {
     }
 
     public void populateButtonList(ArrayList<BotButtonModel> botButtonModels, final boolean enabled) {
-        final BotButtonTemplateAdapter buttonTypeAdapter;
+        final BotButtonStaggeredTemplateAdaptor buttonTypeAdapter;
         if (botButtonModels != null) {
-            autoExpandListView.setVisibility(VISIBLE);
-            buttonTypeAdapter = new BotButtonTemplateAdapter(getContext());
+            recyclerView.setVisibility(VISIBLE);
+            buttonTypeAdapter = new BotButtonStaggeredTemplateAdaptor(getContext());
             buttonTypeAdapter.setEnabled(enabled);
-            autoExpandListView.setAdapter(buttonTypeAdapter);
+            recyclerView.setAdapter(buttonTypeAdapter);
 //            autoExpandListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //                @Override
 //                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -103,18 +113,18 @@ public class BotButtonView extends ViewGroup {
             buttonTypeAdapter.setInvokeGenericWebViewInterface(invokeGenericWebViewInterface);
             buttonTypeAdapter.notifyDataSetChanged();
         } else {
-            autoExpandListView.setAdapter(null);
-            autoExpandListView.setVisibility(GONE);
+            recyclerView.setAdapter(null);
+            recyclerView.setVisibility(GONE);
         }
 
     }
 
     private int getViewHeight() {
         int viewHeight = 0;
-        if (autoExpandListView != null) {
+        if (recyclerView != null) {
             int count = 0;
-            if (autoExpandListView.getAdapter() != null) {
-                count = autoExpandListView.getAdapter().getCount();
+            if (recyclerView.getAdapter() != null) {
+                count = recyclerView.getAdapter().getItemCount();
             }
             viewHeight = (int) (layoutItemHeight * count)+(int)(count*(3*dp1));
         }
@@ -128,7 +138,7 @@ public class BotButtonView extends ViewGroup {
         int childHeightSpec = MeasureSpec.makeMeasureSpec(viewHeight, MeasureSpec.EXACTLY);
         int childWidthSpec = MeasureSpec.makeMeasureSpec(viewWidth, MeasureSpec.EXACTLY);
 
-        MeasureUtils.measure(autoExpandListView, childWidthSpec, childHeightSpec);
+        MeasureUtils.measure(recyclerView, childWidthSpec, childHeightSpec);
 
         int parentWidthSpec = childWidthSpec;
         int parentHeightSpec = childHeightSpec;
