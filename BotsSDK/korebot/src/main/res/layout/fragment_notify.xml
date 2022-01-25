@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".fragment.TransactionFragment">
+    android:background="#02406D"
+    tools:context=".fragment.TransactionFragment"
+    android:padding="10dp">
 
     <TextView
         android:id="@+id/textView10"
@@ -13,6 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Notifications"
+        android:textColor="@color/white"
         android:layout_gravity="center"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -21,17 +24,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        app:cardElevation="4dp"
-        android:background="#CED2F0FF"
+        app:cardCornerRadius="12dp"
+        android:background="@color/colorPrimaryKa"
         app:layout_constraintTop_toBottomOf="@+id/textView10"
         tools:ignore="MissingConstraints">
 
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_notif"
-            android:layout_margin="16dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#CED2F0FF"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimaryKa"
             tools:listitem="@layout/item_activity" />
     </com.google.android.material.card.MaterialCardView>
 
