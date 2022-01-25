@@ -1,7 +1,6 @@
 package kore.botssdk.adapter;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
@@ -17,10 +16,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 import kore.botssdk.R;
+import kore.botssdk.application.AppControl;
 import kore.botssdk.listener.ComposeFooterInterface;
 import kore.botssdk.listener.InvokeGenericWebViewInterface;
 import kore.botssdk.models.BotButtonModel;
-import kore.botssdk.models.BotResponse;
 import kore.botssdk.utils.BundleConstants;
 
 public class BotButtonStaggeredTemplateAdaptor extends RecyclerView.Adapter<BotButtonStaggeredTemplateAdaptor.ViewHolder> {
@@ -28,31 +27,25 @@ public class BotButtonStaggeredTemplateAdaptor extends RecyclerView.Adapter<BotB
     List<BotButtonModel> botButtonModels = new LinkedList<>();
     private final String splashColour;
     private final String disabledColour;
-    private LayoutInflater ownLayoutInflater = null;
-    private final String textColor;
-    private final String disabledTextColor;
-    private boolean isEnabled;
+    private LayoutInflater ownLayoutInflater;
+    private boolean isEnabled = true;
     private float dp1;
-    private SharedPreferences sharedPreferences;
 
     private ComposeFooterInterface composeFooterInterface;
     private InvokeGenericWebViewInterface invokeGenericWebViewInterface;
 
     public BotButtonStaggeredTemplateAdaptor(Context context) {
         ownLayoutInflater = LayoutInflater.from(context);
-        sharedPreferences = context.getSharedPreferences(BotResponse.THEME_NAME, Context.MODE_PRIVATE);
-
         splashColour = "#" + Integer.toHexString(ContextCompat.getColor(context, R.color.colorPrimary));
         disabledColour = "#" + Integer.toHexString(ContextCompat.getColor(context, R.color.meetingsDisabled));
-        textColor = "#" + Integer.toHexString(ContextCompat.getColor(context, R.color.white));
-        disabledTextColor = "#" + Integer.toHexString(ContextCompat.getColor(context, R.color.white));
+        dp1 = AppControl.getInstance().getDimensionUtil().dp1;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int position) {
 
-        View view = ownLayoutInflater.inflate(R.layout.bot_button_grid_layout, parent, false);
+        View view = ownLayoutInflater.inflate(R.layout.bot_button_staggared_grid_layout_item, parent, false);
 
         BotButtonStaggeredTemplateAdaptor.ViewHolder holder = new ViewHolder(view, this);
         if (view.getTag() == null) {
@@ -89,8 +82,6 @@ public class BotButtonStaggeredTemplateAdaptor extends RecyclerView.Adapter<BotB
 
     private void initializeViewHolder(View view, BotButtonStaggeredTemplateAdaptor.ViewHolder viewHolder) {
         viewHolder.botItemButton = view.findViewById(R.id.grid_text);
-
-//        ((GradientDrawable) viewHolder.botItemButton.getBackground()).setColor(isEnabled ? Color.parseColor(splashColour) : Color.parseColor(disabledColour));
         ((GradientDrawable) viewHolder.botItemButton.getBackground()).setStroke((int) (2 * dp1), isEnabled ? Color.parseColor(splashColour) : Color.parseColor(disabledColour));
         viewHolder.botItemButton.setTextColor(isEnabled ? Color.parseColor(splashColour) : Color.parseColor(disabledColour));
         view.setTag(viewHolder);

@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
@@ -19,13 +18,10 @@ import java.util.List;
 import kore.botssdk.R;
 import kore.botssdk.models.BotButtonModel;
 
-import kore.botssdk.application.AppControl;
 import kore.botssdk.listener.ComposeFooterInterface;
 import kore.botssdk.listener.InvokeGenericWebViewInterface;
 import kore.botssdk.models.BotResponse;
-import kore.botssdk.net.SDKConfiguration;
 import kore.botssdk.utils.BundleConstants;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class BotButtonGridTemplateAdaptor extends BaseAdapter {
 
@@ -75,7 +71,7 @@ public class BotButtonGridTemplateAdaptor extends BaseAdapter {
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
         if (view == null) {
-            view = ownLayoutInflater.inflate(R.layout.bot_button_grid_layout, null);
+            view = ownLayoutInflater.inflate(R.layout.bot_button_staggared_grid_layout_item, null);
         }
 
         if (view.getTag() == null) {
