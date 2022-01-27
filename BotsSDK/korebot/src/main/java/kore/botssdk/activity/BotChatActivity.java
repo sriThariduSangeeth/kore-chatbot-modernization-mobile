@@ -658,7 +658,7 @@ public class BotChatActivity extends BotAppCompactActivity implements ComposeFoo
                         if (botResponse == null || botResponse.getMessage() == null || botResponse.getMessage().isEmpty()) {
                             return;
                         }
-                        Log.d(LOG_TAG, payload);
+                         Log.d(LOG_TAG, payload);
                         boolean resolved = true;
                         if (!botResponse.getMessage().isEmpty()) {
                             ComponentModelPayloadText compModel = botResponse.getMessage().get(0).getComponent();

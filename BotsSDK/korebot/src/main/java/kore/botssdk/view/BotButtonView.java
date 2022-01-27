@@ -16,7 +16,7 @@ import com.google.android.flexbox.JustifyContent;
 import java.util.ArrayList;
 
 import kore.botssdk.R;
-import kore.botssdk.adapter.BotButtonStaggeredTemplateAdaptor;
+import kore.botssdk.adapter.BotButtonFlexboxTemplateAdaptor;
 import kore.botssdk.application.AppControl;
 import kore.botssdk.listener.ComposeFooterInterface;
 import kore.botssdk.listener.InvokeGenericWebViewInterface;
@@ -79,10 +79,10 @@ public class BotButtonView extends ViewGroup {
     }
 
     public void populateButtonList(ArrayList<BotButtonModel> botButtonModels, final boolean enabled) {
-        final BotButtonStaggeredTemplateAdaptor buttonTypeAdapter;
+        final BotButtonFlexboxTemplateAdaptor buttonTypeAdapter;
         if (botButtonModels != null) {
             recyclerView.setVisibility(VISIBLE);
-            buttonTypeAdapter = new BotButtonStaggeredTemplateAdaptor(getContext());
+            buttonTypeAdapter = new BotButtonFlexboxTemplateAdaptor(getContext());
             buttonTypeAdapter.setEnabled(enabled);
             recyclerView.setAdapter(buttonTypeAdapter);
 //            autoExpandListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

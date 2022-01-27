@@ -25,7 +25,7 @@ import kore.botssdk.listener.InvokeGenericWebViewInterface;
 import kore.botssdk.models.BotButtonModel;
 import kore.botssdk.utils.BundleConstants;
 
-public class BotButtonStaggeredTemplateAdaptor extends RecyclerView.Adapter<BotButtonStaggeredTemplateAdaptor.ViewHolder> {
+public class BotButtonFlexboxTemplateAdaptor extends RecyclerView.Adapter<BotButtonFlexboxTemplateAdaptor.ViewHolder> {
 
     List<BotButtonModel> botButtonModels = new LinkedList<>();
     private final String splashColour;
@@ -37,7 +37,7 @@ public class BotButtonStaggeredTemplateAdaptor extends RecyclerView.Adapter<BotB
     private ComposeFooterInterface composeFooterInterface;
     private InvokeGenericWebViewInterface invokeGenericWebViewInterface;
 
-    public BotButtonStaggeredTemplateAdaptor(Context context) {
+    public BotButtonFlexboxTemplateAdaptor(Context context) {
         ownLayoutInflater = LayoutInflater.from(context);
         splashColour = "#" + Integer.toHexString(ContextCompat.getColor(context, R.color.colorPrimary));
         disabledColour = "#" + Integer.toHexString(ContextCompat.getColor(context, R.color.meetingsDisabled));
@@ -50,7 +50,7 @@ public class BotButtonStaggeredTemplateAdaptor extends RecyclerView.Adapter<BotB
 
         View view = ownLayoutInflater.inflate(R.layout.bot_button_staggared_grid_layout_item, parent, false);
 
-        BotButtonStaggeredTemplateAdaptor.ViewHolder holder = new ViewHolder(view, this);
+        BotButtonFlexboxTemplateAdaptor.ViewHolder holder = new ViewHolder(view, this);
         if (view.getTag() == null) {
             initializeViewHolder(view, holder);
         }
@@ -74,16 +74,16 @@ public class BotButtonStaggeredTemplateAdaptor extends RecyclerView.Adapter<BotB
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView botItemButton = null;
-        final BotButtonStaggeredTemplateAdaptor mAdapter;
+        final BotButtonFlexboxTemplateAdaptor mAdapter;
 
 
-        public ViewHolder(@NonNull View itemView, BotButtonStaggeredTemplateAdaptor mAdapter) {
+        public ViewHolder(@NonNull View itemView, BotButtonFlexboxTemplateAdaptor mAdapter) {
             super(itemView);
             this.mAdapter = mAdapter;
         }
     }
 
-    private void initializeViewHolder(View view, BotButtonStaggeredTemplateAdaptor.ViewHolder viewHolder) {
+    private void initializeViewHolder(View view, BotButtonFlexboxTemplateAdaptor.ViewHolder viewHolder) {
         viewHolder.botItemButton = view.findViewById(R.id.grid_text);
         ((GradientDrawable) viewHolder.botItemButton.getBackground()).setStroke((int) (2 * dp1), isEnabled ? Color.parseColor(splashColour) : Color.parseColor(disabledColour));
         viewHolder.botItemButton.setTextColor(isEnabled ? Color.parseColor(splashColour) : Color.parseColor(disabledColour));
@@ -96,7 +96,7 @@ public class BotButtonStaggeredTemplateAdaptor extends RecyclerView.Adapter<BotB
         }
     }
 
-    private void populateView(BotButtonStaggeredTemplateAdaptor.ViewHolder holder, int position) {
+    private void populateView(BotButtonFlexboxTemplateAdaptor.ViewHolder holder, int position) {
         BotButtonModel buttonTemplate = this.botButtonModels.get(position);
 
         holder.botItemButton.setText(buttonTemplate.getTitle());
